@@ -63,7 +63,6 @@ import com.mongodb.client.MongoClient;
             RaceId.TIEFLING
         );
 
-        @Transactional
         public String create(CreatePersonDto personRequest) {
 
             if(!className.contains(personRequest.classe()) || !raceName.contains(personRequest.raca())){
