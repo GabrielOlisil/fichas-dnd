@@ -1,0 +1,55 @@
+services:
+  mongo:
+    container_name: 'mongo_server_dnd'
+    image: mongo:8.0.21-rc1-noble@sha256:825e776ff8f2d98b33087b8fef1e061a012a23a964fc67b7f6c5d70e5296f709
+    env_file:
+      - .env.mongo
+    networks:
+      - app
+    volumes:
+      - mongodb-data:/data/db
+
+    ports:
+      - '27017:27017'
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  me:
+    container_name: 'mongo_express_dnd'
+    image: mongo-express:1.0.2-20-alpine3.19@sha256:1aae0077525133249133d42980ba23998712a1077e02ac0ac295b50a7a79d550
+    depends_on:
+      - mongo
+    env_file:
+      - .env.me
+
+    ports:
+      - '8089:8081'
+
+    networks:
+      - app
+
+#  api:
+#    container_name: 'api_dnd'
+#    build: .
+#    ports:
+#      - '8080:8080'
+#
+#    depends_on:
+#      mongo:
+#        condition: service_healthy
+#    restart: on-failure
+#    networks:
+#      - app
+
+
+volumes:
+  mongodb-data:
+
+
+
+networks:
+  app:
+    driver: bridge
