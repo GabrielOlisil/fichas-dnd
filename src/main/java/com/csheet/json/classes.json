@@ -1,3 +1,56 @@
 {
-    
+    "barbaro": {
+        "1": {
+            "features": [
+                {
+                    "id": "furia"
+                },
+                {
+                    "id": "defesa_sem_armadura"
+                }
+            ],
+            "escolhas": []
+        },
+        "2": {
+            "features": [
+                {
+                    "id": "ataque_descuidado"
+                },
+                {
+                    "id": "sentido_de_perigo"
+                }
+            ],
+            "escolhas": []
+        },
+        "3": {
+            "features": [],
+            "escolhas": [
+                {
+                    "tipo": "subclasse",
+                    "opcoes": [
+                        "furioso",
+                        "totemico"
+                    ],
+                    "id": "caminho_primitivo"
+                }
+            ]
+        },
+        "4": {
+            "features": [],
+            "escolhas": [
+                {
+                    "tipo": "incremento_habilidade",
+                    "pontos": 2,
+                    "opcoes": [
+                        "des",
+                        "con",
+                        "int",
+                        "for",
+                        "car",
+                        "sab"
+                    ]
+                }
+            ]
+        }
+    }
 }

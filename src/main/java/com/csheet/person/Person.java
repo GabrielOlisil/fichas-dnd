@@ -30,6 +30,8 @@ public class Person extends PanacheMongoEntity {
     public int xp;
 
     public Map<String, Object> escolhas;
+
+ 
     
     
 
