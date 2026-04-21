@@ -2,9 +2,6 @@ package com.csheet.person;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-
-import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.jboss.resteasy.reactive.ResponseStatus;

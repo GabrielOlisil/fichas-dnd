@@ -1,56 +1,350 @@
 {
     "barbaro": {
-        "1": {
-            "features": [
-                {
-                    "id": "furia"
-                },
-                {
-                    "id": "defesa_sem_armadura"
-                }
-            ],
-            "escolhas": []
-        },
-        "2": {
-            "features": [
-                {
-                    "id": "ataque_descuidado"
-                },
-                {
-                    "id": "sentido_de_perigo"
-                }
-            ],
-            "escolhas": []
-        },
-        "3": {
-            "features": [],
-            "escolhas": [
-                {
-                    "tipo": "subclasse",
-                    "opcoes": [
-                        "furioso",
-                        "totemico"
-                    ],
-                    "id": "caminho_primitivo"
-                }
-            ]
-        },
-        "4": {
-            "features": [],
-            "escolhas": [
-                {
-                    "tipo": "incremento_habilidade",
-                    "pontos": 2,
-                    "opcoes": [
-                        "des",
-                        "con",
-                        "int",
-                        "for",
-                        "car",
-                        "sab"
-                    ]
-                }
-            ]
+        "descricao": "Um feroz guerreiro de origem primitiva que pode entrar em fúria durante uma batalha",
+        "resistencias": [
+            "for",
+            "con"
+        ],
+        "hit_die": "12",
+        "progressao": {
+            "1": {
+                "features": [
+                    {
+                        "id": "furia",
+                        "requer": [],
+                        "substitui": []
+                    },
+                    {
+                        "id": "defesa_sem_armadura",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "2": {
+                "features": [
+                    {
+                        "id": "ataque_descuidado",
+                        "requer": [],
+                        "substitui": []
+                    },
+                    {
+                        "id": "sentido_de_perigo",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "3": {
+                "features": [
+                    {
+                        "id": "frenesi",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "furioso"
+                            }
+                        ],
+                        "substitui": []
+                    },
+                    {
+                        "id": "conselheiro_espiritual",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "totemico"
+                            }
+                        ],
+                        "substitui": []
+                    },
+                    {
+                        "id": "totem_espiritual",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "totemico"
+                            }
+                        ],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": [
+                    {
+                        "tipo": "subclasse",
+                        "opcoes": [
+                            "furioso",
+                            "totemico"
+                        ],
+                        "id": "caminho_primitivo"
+                    }
+                ]
+            },
+            "4": {
+                "features": [],
+                "escolhas": [
+                    {
+                        "id": "incr_lvl_4",
+                        "tipo": "incremento_habilidade",
+                        "pontos": 2,
+                        "opcoes": [
+                            "des",
+                            "con",
+                            "int",
+                            "for",
+                            "car",
+                            "sab"
+                        ]
+                    }
+                ]
+            },
+            "5": {
+                "features": [
+                    {
+                        "id": "ataque_extra",
+                        "requer": [],
+                        "substitui": []
+                    },
+                    {
+                        "id": "movimento_rapido",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "6": {
+                "features": [
+                    {
+                        "id": "furia_inconsciente",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "furioso"
+                            }
+                        ],
+                        "substitui": []
+                    },
+                    {
+                        "id": "aspecto_da_besta",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "totemico"
+                            }
+                        ],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "7": {
+                "features": [
+                    {
+                        "id": "instinto_selvagem",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "8": {
+                "features": [],
+                "escolhas": [
+                    {
+                        "id": "incr_lvl_8",
+                        "tipo": "incremento_habilidade",
+                        "pontos": 2,
+                        "opcoes": [
+                            "des",
+                            "con",
+                            "int",
+                            "for",
+                            "car",
+                            "sab"
+                        ]
+                    }
+                ]
+            },
+            "9": {
+                "features": [
+                    {
+                        "id": "critico_brutal_1",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "10": {
+                "features": [
+                    {
+                        "id": "presenca_intimidante",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "furioso"
+                            }
+                        ],
+                        "substitui": []
+                    },
+                    {
+                        "id": "andarilho_espiritual",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "totemico"
+                            }
+                        ],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "11": {
+                "features": [
+                    {
+                        "id": "furia_implacavel",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "12": {
+                "features": [],
+                "escolhas": [
+                    {
+                        "id": "incr_lvl_12",
+                        "tipo": "incremento_habilidade",
+                        "pontos": 2,
+                        "opcoes": [
+                            "des",
+                            "con",
+                            "int",
+                            "for",
+                            "car",
+                            "sab"
+                        ]
+                    }
+                ]
+            },
+            "13": {
+                "features": [
+                    {
+                        "id": "critico_brutal_2",
+                        "requer": [],
+                        "substitui": [
+                            "critico_brutal_1"
+                        ]
+                    }
+                ],
+                "escolhas": []
+            },
+            "14": {
+                "features": [
+                    {
+                        "id": "retaliacao",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "furioso"
+                            }
+                        ],
+                        "substitui": []
+                    },
+                    {
+                        "id": "sintonia_totemica",
+                        "requer": [
+                            {
+                                "id": "caminho_primitivo",
+                                "escolha": "totemico"
+                            }
+                        ],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "15": {
+                "features": [
+                    {
+                        "id": "furia_persistente",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "16": {
+                "features": [],
+                "escolhas": [
+                    {
+                        "id": "incr_lvl_16",
+                        "tipo": "incremento_habilidade",
+                        "pontos": 2,
+                        "opcoes": [
+                            "des",
+                            "con",
+                            "int",
+                            "for",
+                            "car",
+                            "sab"
+                        ]
+                    }
+                ]
+            },
+            "17": {
+                "features": [
+                    {
+                        "id": "critico_brutal_3",
+                        "requer": [],
+                        "substitui": [
+                            "critico_brutal_2"
+                        ]
+                    }
+                ],
+                "escolhas": []
+            },
+            "18": {
+                "features": [
+                    {
+                        "id": "forca_indomavel",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            },
+            "19": {
+                "features": [],
+                "escolhas": [
+                    {
+                        "id": "incr_lvl_19",
+                        "tipo": "incremento_habilidade",
+                        "pontos": 2,
+                        "opcoes": [
+                            "des",
+                            "con",
+                            "int",
+                            "for",
+                            "car",
+                            "sab"
+                        ]
+                    }
+                ]
+            },
+            "20": {
+                "features": [
+                    {
+                        "id": "campeao_primitivo",
+                        "requer": [],
+                        "substitui": []
+                    }
+                ],
+                "escolhas": []
+            }
         }
     }
 }

@@ -11,8 +11,6 @@ public record CreatePersonDto(
     String raca, 
     String classe, 
     Attributes atributosBase, 
-    int hpAtual, 
     String alinhamento,
-    int xp, 
     Map<String, Object> escolhas
 ) {}

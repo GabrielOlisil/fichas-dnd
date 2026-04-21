@@ -1,42 +1,37 @@
-    package com.csheet.person;
+package com.csheet.person;
 
-    import com.csheet.person.dtos.CreatePersonDto;
-    import com.csheet.person.utils.ClassId;
+import com.csheet.person.dtos.CreatePersonDto;
+import com.csheet.person.utils.AntecedenteId;
+import com.csheet.person.utils.ClassId;
 import com.csheet.person.utils.RaceId;
-import com.mongodb.client.MongoClient;
-    import com.mongodb.client.MongoCollection;
-    import com.mongodb.client.MongoCursor;
-    import jakarta.enterprise.context.ApplicationScoped;
-    import jakarta.inject.Inject;
-    import jakarta.transaction.Transactional;
-    import jakarta.ws.rs.BadRequestException;
 
-    import org.bson.Document;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.BadRequestException;
 
-    import java.util.ArrayList;
-    import java.util.List;
-    import java.util.Map;
 
-    @ApplicationScoped
-    public class PersonService {
+import java.util.List;
+import java.util.Map;
 
-        private final Map<String, Integer> classHpDie = Map.ofEntries(
-                Map.entry(ClassId.BARBARO, 12),
-                Map.entry(ClassId.BARDO, 8),
-                Map.entry(ClassId.BRUXO, 8),
-                Map.entry(ClassId.CLERIGO, 8),
-                Map.entry(ClassId.DRUIDA, 8),
-                Map.entry(ClassId.FEITICEIRO, 6),
-                Map.entry(ClassId.GUERREIRO, 10),
-                Map.entry(ClassId.LADINO, 8),
-                Map.entry(ClassId.MAGO, 6),
-                Map.entry(ClassId.MONGE, 8),
-                Map.entry(ClassId.PALADINO, 10),
-                Map.entry(ClassId.PATRULEIRO, 10)
+@ApplicationScoped
+public class PersonService {
 
-        );
+    private final Map<String, Integer> classHpDie = Map.ofEntries(
+            Map.entry(ClassId.BARBARO, 12),
+            Map.entry(ClassId.BARDO, 8),
+            Map.entry(ClassId.BRUXO, 8),
+            Map.entry(ClassId.CLERIGO, 8),
+            Map.entry(ClassId.DRUIDA, 8),
+            Map.entry(ClassId.FEITICEIRO, 6),
+            Map.entry(ClassId.GUERREIRO, 10),
+            Map.entry(ClassId.LADINO, 8),
+            Map.entry(ClassId.MAGO, 6),
+            Map.entry(ClassId.MONGE, 8),
+            Map.entry(ClassId.PALADINO, 10),
+            Map.entry(ClassId.PATRULEIRO, 10)
 
-        private final List<String> className = List.of(
+    );
+
+    private final List<String> className = List.of(
             ClassId.BARBARO,
             ClassId.BARDO,
             ClassId.BRUXO,
@@ -48,10 +43,9 @@ import com.mongodb.client.MongoClient;
             ClassId.MAGO,
             ClassId.PALADINO,
             ClassId.MONGE,
-            ClassId.PATRULEIRO
-        );
+            ClassId.PATRULEIRO);
 
-        private final List<String> raceName = List.of(
+    private final List<String> raceName = List.of(
             RaceId.ANAO,
             RaceId.ELFO,
             RaceId.HALFLING,
@@ -60,40 +54,57 @@ import com.mongodb.client.MongoClient;
             RaceId.GNOME,
             RaceId.MEIO_ELFO,
             RaceId.MEIO_ORC,
-            RaceId.TIEFLING
-        );
+            RaceId.TIEFLING);
 
-        public String create(CreatePersonDto personRequest) {
+    private final List<String> antecedenteName = List.of(
+            AntecedenteId.ACOLITO,
+            AntecedenteId.ARTESAO_DE_GUILDA,
+            AntecedenteId.ARTISTA,
+            AntecedenteId.CHARLATAO,
+            AntecedenteId.CRIMINOSO,
+            AntecedenteId.EREMITA,
+            AntecedenteId.FORASTEIRO,
+            AntecedenteId.HEROI_DO_POVO,
+            AntecedenteId.MARINHEIRO,
+            AntecedenteId.NOBRE,
+            AntecedenteId.ORFAO,
+            AntecedenteId.SABIO,
+            AntecedenteId.SOLDADO
 
-            if(!className.contains(personRequest.classe()) || !raceName.contains(personRequest.raca())){
-                throw new BadRequestException();
-            }
+    );
 
+    public String create(CreatePersonDto personRequest) {
 
-            var person = new Person();
-            person.alinhamento = personRequest.alinhamento();
-            person.antecedente = personRequest.antecedente();
-            person.atributosBase = personRequest.atributosBase();
-            person.classe = personRequest.classe();
-            person.escolhas = personRequest.escolhas();
-            person.hpAtual = calcHpInicial(personRequest.atributosBase().con(), personRequest.classe());
-            person.level = 1;
-            person.name = personRequest.name();
-            person.playerName = personRequest.playerName();
-            person.raca = personRequest.raca();
-            person.xp = 0;
-
-            person.persist();
-
-            return "localhost:8080/people/" + person.id;
+        if (!className.contains(personRequest.classe()) 
+            || !raceName.contains(personRequest.raca()) 
+            || !antecedenteName.contains(personRequest.antecedente())) {
+            throw new BadRequestException("nome de classe/raça/antecedende inválido");
         }
 
-        private int calcBonusAtributos(int atr) {
+        var person = new Person();
+        person.alinhamento = personRequest.alinhamento();
+        person.antecedente = personRequest.antecedente();
+        person.atributosBase = personRequest.atributosBase();
+        person.classe = personRequest.classe();
+        person.escolhas = personRequest.escolhas();
+        person.hpAtual = calcHpInicial(personRequest.atributosBase().con(), personRequest.classe());
+        person.level = 1;
+        person.name = personRequest.name();
+        person.playerName = personRequest.playerName();
+        person.raca = personRequest.raca();
+        person.xp = 0;
 
-            return Math.floorDiv(atr - 10, 2);
-        }
+        person.persist();
 
-        private int calcHpInicial(int constituicao, String classe) {
-            return classHpDie.get(classe) + calcBonusAtributos(constituicao);
-        }
+        return "localhost:8080/people/" + person.id;
     }
+
+    private int calcBonusAtributos(int atr) {
+
+        return Math.floorDiv(atr - 10, 2);
+    }
+
+    private int calcHpInicial(int constituicao, String classe) {
+        return classHpDie.get(classe) + calcBonusAtributos(constituicao);
+    }
+}
